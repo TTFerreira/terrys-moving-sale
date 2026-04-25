@@ -138,10 +138,11 @@ layout: default
 </div>
 
 <script>
-var galleryImages = [{% for img in page.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
-var currentIndex = 0;
+const galleryImages = [{% for img in page.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
+let currentIndex = 0;
 
 function setMainImage(thumb, index) {
+  if (typeof index !== 'number' || index < 0 || index >= galleryImages.length) return;
   currentIndex = index;
   document.getElementById('gallery-main-img').src = thumb.src;
   document.querySelectorAll('.gallery-thumb').forEach(function(t) { t.classList.remove('active'); });
@@ -159,7 +160,7 @@ function galleryNav(dir) {
 }
 
 function updateCounter() {
-  var counter = document.getElementById('gallery-counter');
+  const counter = document.getElementById('gallery-counter');
   if (counter) counter.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
 }
 </script>
