@@ -34,12 +34,14 @@
   --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
   --shadow-lg: 0 10px 15px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.05);
   --shadow-xl: 0 20px 25px rgba(0,0,0,.10), 0 8px 10px rgba(0,0,0,.06);
+
+  --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
@@ -141,10 +143,18 @@ img { display: block; max-width: 100%; }
 /* ============================================================
    Hero Banner (index page)
    ============================================================ */
+@keyframes heroShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .hero {
-  background: linear-gradient(135deg, #0f2749 0%, #1B3A5C 45%, #1e4d8c 100%);
+  background: linear-gradient(135deg, #0a1f3d 0%, #1B3A5C 40%, #1e4d8c 70%, #c85000 100%);
+  background-size: 300% 300%;
+  animation: heroShift 12s ease infinite;
   color: #fff;
-  padding: 3.5rem 1.5rem;
+  padding: 4rem 1.5rem;
   text-align: center;
   margin-bottom: 2.5rem;
   border-radius: var(--radius);
@@ -204,6 +214,11 @@ img { display: block; max-width: 100%; }
    ============================================================ */
 .filter-section {
   margin-bottom: 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .filter-section h2 {
@@ -297,16 +312,33 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-border);
   overflow: hidden;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   display: flex;
   flex-direction: column;
 }
 
+/* Category-coloured top accent on cards */
+.item-card[data-category="Electronics"]          { border-top-color: var(--cat-electronics); }
+.item-card[data-category="Furniture"]            { border-top-color: var(--cat-furniture); }
+.item-card[data-category="Kitchen"],
+.item-card[data-category="Kitchen Appliances"],
+.item-card[data-category="Kitchen & Appliances"] { border-top-color: var(--cat-kitchen); }
+.item-card[data-category="Outdoor"],
+.item-card[data-category="Outdoor Garden"],
+.item-card[data-category="Outdoor & Garden"]     { border-top-color: var(--cat-outdoor); }
+.item-card[data-category="Sports"],
+.item-card[data-category="Sports Recreation"],
+.item-card[data-category="Sports & Recreation"]  { border-top-color: var(--cat-sports); }
+.item-card[data-category="Books"],
+.item-card[data-category="Books Media"],
+.item-card[data-category="Books & Media"]        { border-top-color: var(--cat-books); }
+
 .item-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-xl);
-  border-color: rgba(249,115,22,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0,0,0,.12), 0 6px 12px rgba(249,115,22,.1);
+  border-color: rgba(249,115,22,0.45);
   text-decoration: none;
 }
 
@@ -341,6 +373,10 @@ img { display: block; max-width: 100%; }
   border-radius: 0.3rem;
   backdrop-filter: blur(4px);
   pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1.4;
 }
 
 .item-card-img-placeholder {
@@ -352,10 +388,15 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-size: 0.8rem;
 }
-.item-card-img-placeholder span { font-size: 2.5rem; }
+.item-card-img-placeholder span {
+  font-size: 2.5rem;
+  line-height: 1;
+  display: block;
+  opacity: 0.6;
+}
 
 .item-card-body {
   padding: 1rem 1.1rem 1.25rem;
@@ -379,6 +420,7 @@ img { display: block; max-width: 100%; }
   color: var(--color-text);
   line-height: 1.3;
   margin-bottom: 0.15rem;
+  letter-spacing: -0.01em;
 }
 
 .item-card-excerpt {
@@ -402,9 +444,10 @@ img { display: block; max-width: 100%; }
 }
 
 .item-card-price {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--color-price);
+  letter-spacing: -0.01em;
 }
 
 .item-card-link {
@@ -522,7 +565,12 @@ img { display: block; max-width: 100%; }
   gap: 0.5rem;
   font-size: 0.9rem;
 }
-.gallery-placeholder span { font-size: 4rem; }
+.gallery-placeholder span {
+  font-size: 4rem;
+  line-height: 1;
+  display: block;
+  opacity: 0.55;
+}
 
 /* Gallery nav arrows */
 .gallery-nav {
