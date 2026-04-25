@@ -25,6 +25,11 @@ layout: default
             alt="{{ page.title }}"
             class="gallery-main-img"
           />
+          {% if page.images.size > 1 %}
+          <button class="gallery-nav gallery-prev" onclick="galleryNav(-1)" aria-label="Previous image">&#8249;</button>
+          <button class="gallery-nav gallery-next" onclick="galleryNav(1)" aria-label="Next image">&#8250;</button>
+          <span class="gallery-counter" id="gallery-counter">1 / {{ page.images.size }}</span>
+          {% endif %}
         </div>
         {% if page.images.size > 1 %}
         <div class="gallery-thumbs">
@@ -33,7 +38,7 @@ layout: default
             src="{{ img }}"
             alt="{{ page.title }} — image {{ forloop.index }}"
             class="gallery-thumb{% if forloop.first %} active{% endif %}"
-            onclick="setMainImage(this)"
+            onclick="setMainImage(this, {{ forloop.index0 }})"
           />
           {% endfor %}
         </div>
@@ -68,6 +73,7 @@ layout: default
         <span class="price-amount">${{ page.price }}</span>
         {% if page.original_price %}
         <span class="price-original">(was ${{ page.original_price }})</span>
+        <span class="price-save">Save ${{ page.original_price | minus: page.price }}</span>
         {% endif %}
       </div>
 
@@ -132,9 +138,28 @@ layout: default
 </div>
 
 <script>
-function setMainImage(thumb) {
+var galleryImages = [{% for img in page.images %}"{{ img }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
+var currentIndex = 0;
+
+function setMainImage(thumb, index) {
+  currentIndex = index;
   document.getElementById('gallery-main-img').src = thumb.src;
   document.querySelectorAll('.gallery-thumb').forEach(function(t) { t.classList.remove('active'); });
   thumb.classList.add('active');
+  updateCounter();
+}
+
+function galleryNav(dir) {
+  currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById('gallery-main-img').src = galleryImages[currentIndex];
+  document.querySelectorAll('.gallery-thumb').forEach(function(t, i) {
+    t.classList.toggle('active', i === currentIndex);
+  });
+  updateCounter();
+}
+
+function updateCounter() {
+  var counter = document.getElementById('gallery-counter');
+  if (counter) counter.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
 }
 </script>

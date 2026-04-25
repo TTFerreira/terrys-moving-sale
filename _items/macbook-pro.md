@@ -6,7 +6,9 @@ original_price: 2999
 condition: "Good"
 description: "Apple MacBook Pro 16-inch with M1 Pro chip. Blazing fast performance, incredible battery life, and a gorgeous Liquid Retina XDR display. Comes with original charger and box. Minor cosmetic wear on the bottom casing — no impact on performance."
 images:
-  - "https://placehold.co/800x600/1B3A5C/FFFFFF?text=MacBook+Pro+16%22+M1+Pro"
+  - "https://placehold.co/800x600/1B3A5C/FFFFFF?text=MacBook+Pro+—+Front+View"
+  - "https://placehold.co/800x600/243E6B/FFFFFF?text=MacBook+Pro+—+Side+Profile"
+  - "https://placehold.co/800x600/2a5298/FFFFFF?text=MacBook+Pro+—+Keyboard+%26+Trackpad"
 specs:
   Chip: "Apple M1 Pro"
   CPU Cores: "10-core"

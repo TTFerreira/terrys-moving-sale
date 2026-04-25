@@ -6,7 +6,9 @@ original_price: 2499
 condition: "Excellent"
 description: "Stunning Sony Bravia 65-inch OLED 4K TV with Cognitive Processor XR. Picture quality is incredible — blacks are true black and colours are vibrant. Includes original remote, stand, and all cables. Purchased in 2022."
 images:
-  - "https://placehold.co/800x600/1B3A5C/FFFFFF?text=Sony+Bravia+65%22+OLED"
+  - "https://placehold.co/800x600/1B3A5C/FFFFFF?text=Sony+Bravia+—+Front+View"
+  - "https://placehold.co/800x600/243E6B/FFFFFF?text=Sony+Bravia+—+Side+%26+Ports"
+  - "https://placehold.co/800x600/0A2744/FFFFFF?text=Sony+Bravia+—+Remote+%26+Stand"
 specs:
   Screen Size: "65 inches"
   Panel Type: "OLED"

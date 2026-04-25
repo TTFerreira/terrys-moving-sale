@@ -6,7 +6,9 @@ original_price: 449
 condition: "Good"
 description: "The legendary KitchenAid Artisan stand mixer in Empire Red. 10-speed motor, tilt-head design, and comes with three mixing attachments. Used regularly for baking but always well-cared for. Bowl has minor surface scratches from regular use."
 images:
-  - "https://placehold.co/800x600/10B981/FFFFFF?text=KitchenAid+Artisan"
+  - "https://placehold.co/800x600/10B981/FFFFFF?text=KitchenAid+—+Front+View"
+  - "https://placehold.co/800x600/059669/FFFFFF?text=KitchenAid+—+Side+View"
+  - "https://placehold.co/800x600/065F46/FFFFFF?text=KitchenAid+—+Attachments"
 specs:
   Colour: "Empire Red"
   Bowl Capacity: "5 Quart (4.7 L)"
