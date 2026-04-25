@@ -1,0 +1,140 @@
+---
+layout: default
+---
+
+<div class="container item-page">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ site.baseurl }}/">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="{{ site.baseurl }}/?category={{ page.category | url_encode }}">{{ page.category }}</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>{{ page.title }}</span>
+  </nav>
+
+  <article class="item-detail">
+
+    <!-- Image Gallery -->
+    <div class="item-gallery">
+      {% if page.images and page.images.size > 0 %}
+        <div class="gallery-main">
+          <img
+            id="gallery-main-img"
+            src="{{ page.images[0] }}"
+            alt="{{ page.title }}"
+            class="gallery-main-img"
+          />
+        </div>
+        {% if page.images.size > 1 %}
+        <div class="gallery-thumbs">
+          {% for img in page.images %}
+          <img
+            src="{{ img }}"
+            alt="{{ page.title }} — image {{ forloop.index }}"
+            class="gallery-thumb{% if forloop.first %} active{% endif %}"
+            onclick="setMainImage(this)"
+          />
+          {% endfor %}
+        </div>
+        {% endif %}
+      {% else %}
+        <div class="gallery-main">
+          <div class="gallery-placeholder">
+            <span>📷</span>
+            <p>No image available</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Item Info -->
+    <div class="item-info">
+
+      <div class="item-meta-top">
+        <span class="category-badge category-{{ page.category | downcase | replace: ' ', '-' | replace: '&', '' | replace: '  ', '-' }}">
+          {{ page.category }}
+        </span>
+        {% if page.condition %}
+        <span class="condition-badge condition-{{ page.condition | downcase | replace: ' ', '-' }}">
+          {{ page.condition }}
+        </span>
+        {% endif %}
+      </div>
+
+      <h1 class="item-title">{{ page.title }}</h1>
+
+      <div class="item-price">
+        <span class="price-amount">${{ page.price }}</span>
+        {% if page.original_price %}
+        <span class="price-original">(was ${{ page.original_price }})</span>
+        {% endif %}
+      </div>
+
+      {% if page.description %}
+      <div class="item-description">
+        <h2>Description</h2>
+        <p>{{ page.description }}</p>
+      </div>
+      {% endif %}
+
+      {% if page.specs %}
+      <div class="item-specs">
+        <h2>Specifications</h2>
+        <table class="specs-table">
+          <tbody>
+            {% for spec in page.specs %}
+            <tr>
+              <th>{{ spec[0] }}</th>
+              <td>{{ spec[1] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+
+      {% if page.links %}
+      <div class="item-links">
+        <h2>Useful Links</h2>
+        <ul class="links-list">
+          {% for link in page.links %}
+          <li>
+            <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="external-link">
+              🔗 {{ link.label }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="item-cta">
+        <a
+          href="mailto:{{ site.contact_email }}?subject=Interested%20in%3A%20{{ page.title | url_encode }}&body=Hi%20Terry%2C%0A%0AI%20am%20interested%20in%20the%20{{ page.title | url_encode }}%20listed%20for%20%24{{ page.price }}.%0A%0ACould%20you%20let%20me%20know%20if%20it%20is%20still%20available%3F%0A%0AThanks!"
+          class="btn btn-primary"
+        >
+          ✉ I'm Interested!
+        </a>
+        <a href="{{ site.baseurl }}/" class="btn btn-secondary">← Back to Listings</a>
+      </div>
+
+    </div>
+  </article>
+
+  {% if content and content != "" %}
+  <div class="item-body">
+    <h2>Additional Details</h2>
+    {{ content }}
+  </div>
+  {% endif %}
+
+</div>
+
+<script>
+function setMainImage(thumb) {
+  document.getElementById('gallery-main-img').src = thumb.src;
+  document.querySelectorAll('.gallery-thumb').forEach(function(t) { t.classList.remove('active'); });
+  thumb.classList.add('active');
+}
+</script>

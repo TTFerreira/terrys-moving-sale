@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title and page.title != "Home" %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css" />
+  {% seo %}
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-brand">
+        <a href="{{ site.baseurl }}/" class="site-title">
+          <span class="brand-icon">🏠</span>
+          {{ site.title }}
+        </a>
+        <p class="site-tagline">{{ site.tagline }}</p>
+      </div>
+      <nav class="header-nav">
+        <a href="{{ site.baseurl }}/" class="nav-link{% if page.url == '/' %} active{% endif %}">Browse All</a>
+        <a href="mailto:{{ site.contact_email }}" class="nav-link nav-contact">✉ Contact Terry</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>📦 Terry's Moving Sale &mdash; All items sold as-is. Pick-up only.</p>
+      <p>Questions? Email <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
