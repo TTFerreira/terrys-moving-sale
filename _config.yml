@@ -1,0 +1,26 @@
+title: "Terry's Moving Sale"
+tagline: "Quality items from our home to yours — grab a bargain before we move!"
+description: "Browse our moving sale listings. Great deals on electronics, furniture, kitchen appliances, outdoor gear and more."
+contact_email: "terry@example.com"
+
+baseurl: "/terrys-moving-sale"
+url: "https://ttferreira.github.io"
+
+collections:
+  items:
+    output: true
+    permalink: /items/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "items"
+    values:
+      layout: "item"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+plugins:
+  - jekyll-seo-tag

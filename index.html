@@ -1,0 +1,128 @@
+---
+layout: default
+title: Home
+---
+
+{% assign all_items = site.items | sort: "price" | reverse %}
+{% assign categories = all_items | map: "category" | uniq | sort %}
+
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>🏷️ Terry's Moving Sale</h1>
+    <p>We're moving and everything must go! Browse quality items at great prices — pick-up only.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">📦 {{ all_items.size }} items listed</span>
+      <span class="hero-badge">🚚 Pick-up only</span>
+      <span class="hero-badge">💬 Email to enquire</span>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="filter-section">
+    <h2>Filter by Category</h2>
+    <div class="filter-buttons" id="filter-buttons">
+      <button class="filter-btn active" data-category="all" onclick="filterItems('all', this)">
+        All Items <span class="filter-count">{{ all_items.size }}</span>
+      </button>
+      {% for cat in categories %}
+        {% assign cat_items = all_items | where: "category", cat %}
+        <button
+          class="filter-btn"
+          data-category="{{ cat }}"
+          onclick="filterItems('{{ cat }}', this)"
+        >
+          {{ cat }} <span class="filter-count">{{ cat_items.size }}</span>
+        </button>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Items Grid -->
+  <section>
+    <div class="section-header">
+      <h2 class="section-title" id="section-title">All Items</h2>
+      <span class="items-count" id="items-count">{{ all_items.size }} listings</span>
+    </div>
+
+    <div class="items-grid" id="items-grid">
+      {% for item in all_items %}
+      <a
+        href="{{ site.baseurl }}{{ item.url }}"
+        class="item-card"
+        data-category="{{ item.category }}"
+        aria-label="{{ item.title }} — ${{ item.price }}"
+      >
+        {% if item.images and item.images.size > 0 %}
+          <img
+            src="{{ item.images[0] }}"
+            alt="{{ item.title }}"
+            class="item-card-img"
+            loading="lazy"
+          />
+        {% else %}
+          <div class="item-card-img-placeholder">
+            <span>📷</span>
+            <p>No image</p>
+          </div>
+        {% endif %}
+
+        <div class="item-card-body">
+          <div class="item-card-top">
+            <span class="category-badge category-{{ item.category | downcase | replace: ' ', '-' | replace: '&', '' | replace: '  ', '-' }}">
+              {{ item.category }}
+            </span>
+            {% if item.condition %}
+            <span class="condition-badge condition-{{ item.condition | downcase | replace: ' ', '-' }}">{{ item.condition }}</span>
+            {% endif %}
+          </div>
+          <h3 class="item-card-title">{{ item.title }}</h3>
+          {% if item.description %}
+          <p class="item-card-excerpt">{{ item.description }}</p>
+          {% endif %}
+          <div class="item-card-footer">
+            <span class="item-card-price">${{ item.price }}</span>
+            <span class="item-card-link">View listing →</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="no-results" id="no-results" aria-live="polite">
+      <div class="no-results-icon">🔍</div>
+      <p>No items found in this category.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+function filterItems(category, btn) {
+  // Update active button
+  document.querySelectorAll('.filter-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+
+  // Filter cards
+  var cards = document.querySelectorAll('#items-grid .item-card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    if (category === 'all' || card.dataset.category === category) {
+      card.removeAttribute('hidden');
+      visible++;
+    } else {
+      card.setAttribute('hidden', '');
+    }
+  });
+
+  // Update count & title
+  document.getElementById('items-count').textContent = visible + ' listing' + (visible !== 1 ? 's' : '');
+  document.getElementById('section-title').textContent = category === 'all' ? 'All Items' : category;
+
+  // No-results state
+  document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+}
+</script>
