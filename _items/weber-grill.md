@@ -6,7 +6,9 @@ original_price: 699
 condition: "Good"
 description: "Weber Spirit II 3-burner gas BBQ grill. Reliable and easy to use, with even heat distribution and an integrated lid thermometer. Has been regularly cleaned and maintained. Comes with a Weber grill cover. Natural gas conversion kit not included — this is propane."
 images:
-  - "https://placehold.co/800x600/F59E0B/FFFFFF?text=Weber+Spirit+II"
+  - "https://placehold.co/800x600/F59E0B/FFFFFF?text=Weber+Spirit+—+Full+Grill"
+  - "https://placehold.co/800x600/D97706/FFFFFF?text=Weber+Spirit+—+Grill+Grates"
+  - "https://placehold.co/800x600/92400E/FFFFFF?text=Weber+Spirit+—+Control+Panel"
 specs:
   Fuel Type: "Propane (LPG)"
   Burners: "3 stainless steel burners"

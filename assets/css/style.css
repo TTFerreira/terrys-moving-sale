@@ -33,6 +33,7 @@
   --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
   --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
   --shadow-lg: 0 10px 15px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.05);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,.10), 0 8px 10px rgba(0,0,0,.06);
 }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -61,7 +62,7 @@ img { display: block; max-width: 100%; }
    Header
    ============================================================ */
 .site-header {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #0f2749 0%, var(--color-primary) 100%);
   color: #fff;
   padding: 1rem 0;
   position: sticky;
@@ -141,13 +142,26 @@ img { display: block; max-width: 100%; }
    Hero Banner (index page)
    ============================================================ */
 .hero {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #2a5298 100%);
+  background: linear-gradient(135deg, #0f2749 0%, #1B3A5C 45%, #1e4d8c 100%);
   color: #fff;
-  padding: 3rem 1.5rem;
+  padding: 3.5rem 1.5rem;
   text-align: center;
   margin-bottom: 2.5rem;
   border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
 }
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(249,115,22,0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero > * { position: relative; }
 
 .hero h1 {
   font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -171,12 +185,18 @@ img { display: block; max-width: 100%; }
 }
 
 .hero-badge {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 2rem;
-  padding: 0.35rem 1rem;
+  padding: 0.4rem 1.1rem;
   font-size: 0.85rem;
   font-weight: 500;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.hero-badge:hover {
+  background: rgba(255,255,255,0.2);
 }
 
 /* ============================================================
@@ -278,22 +298,49 @@ img { display: block; max-width: 100%; }
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   display: flex;
   flex-direction: column;
 }
 
 .item-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(249,115,22,0.3);
   text-decoration: none;
+}
+
+/* Image wrapper — enables zoom + badge overlay */
+.item-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
 }
 
 .item-card-img {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
-  background: var(--color-bg);
+  transition: transform 0.35s ease;
+}
+
+.item-card:hover .item-card-img {
+  transform: scale(1.06);
+}
+
+/* Photo count badge */
+.img-count-badge {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.55rem;
+  border-radius: 0.3rem;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
 .item-card-img-placeholder {
@@ -365,6 +412,10 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   color: var(--color-accent);
   white-space: nowrap;
+  transition: color 0.15s;
+}
+.item-card:hover .item-card-link {
+  color: var(--color-accent-dk);
 }
 
 /* ============================================================
@@ -450,6 +501,7 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   margin-bottom: 0.75rem;
+  position: relative;
 }
 
 .gallery-main-img {
@@ -457,6 +509,7 @@ img { display: block; max-width: 100%; }
   max-height: 420px;
   object-fit: contain;
   background: var(--color-bg);
+  transition: opacity 0.15s ease;
 }
 
 .gallery-placeholder {
@@ -471,6 +524,45 @@ img { display: block; max-width: 100%; }
 }
 .gallery-placeholder span { font-size: 4rem; }
 
+/* Gallery nav arrows */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  z-index: 2;
+}
+.gallery-nav:hover { background: rgba(0,0,0,0.7); }
+.gallery-prev { left: 0.6rem; }
+.gallery-next { right: 0.6rem; }
+
+/* Gallery counter */
+.gallery-counter {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.7rem;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
 .gallery-thumbs {
   display: flex;
   gap: 0.5rem;
@@ -484,10 +576,13 @@ img { display: block; max-width: 100%; }
   border-radius: calc(var(--radius) - 2px);
   border: 2px solid var(--color-border);
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, opacity 0.15s;
+  opacity: 0.75;
 }
-.gallery-thumb:hover, .gallery-thumb.active {
+.gallery-thumb:hover { opacity: 1; }
+.gallery-thumb.active {
   border-color: var(--color-accent);
+  opacity: 1;
 }
 
 /* Item info panel */
@@ -511,6 +606,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .price-amount {
@@ -523,6 +619,19 @@ img { display: block; max-width: 100%; }
   font-size: 0.95rem;
   color: var(--color-text-muted);
   text-decoration: line-through;
+}
+
+/* Savings badge */
+.price-save {
+  display: inline-block;
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+  border-radius: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.02em;
 }
 
 .item-description h2,
@@ -614,6 +723,7 @@ img { display: block; max-width: 100%; }
   background: var(--color-accent-dk);
   text-decoration: none;
   box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -646,7 +756,7 @@ img { display: block; max-width: 100%; }
    Footer
    ============================================================ */
 .site-footer {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #0f2749 0%, var(--color-primary) 100%);
   color: rgba(255,255,255,0.75);
   padding: 1.5rem 0;
   margin-top: auto;

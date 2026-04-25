@@ -6,7 +6,9 @@ original_price: 899
 condition: "Good"
 description: "Trek Marlin 7 hardtail mountain bike in size Large. 29-inch wheels, SR Suntour XCT fork with 100mm travel, and a 21-speed Shimano drivetrain. Great for trails and commuting alike. Bike has been serviced within the last 6 months."
 images:
-  - "https://placehold.co/800x600/EF4444/FFFFFF?text=Trek+Marlin+7"
+  - "https://placehold.co/800x600/EF4444/FFFFFF?text=Trek+Marlin+—+Full+Bike"
+  - "https://placehold.co/800x600/DC2626/FFFFFF?text=Trek+Marlin+—+Fork+%26+Front"
+  - "https://placehold.co/800x600/991B1B/FFFFFF?text=Trek+Marlin+—+Drivetrain"
 specs:
   Frame: "Alpha Silver Aluminium, Internal Cable Routing"
   Fork: "SR Suntour XCT, 100mm travel"

@@ -55,12 +55,17 @@ title: Home
         aria-label="{{ item.title }} — ${{ item.price }}"
       >
         {% if item.images and item.images.size > 0 %}
-          <img
-            src="{{ item.images[0] }}"
-            alt="{{ item.title }}"
-            class="item-card-img"
-            loading="lazy"
-          />
+          <div class="item-card-img-wrap">
+            <img
+              src="{{ item.images[0] }}"
+              alt="{{ item.title }}"
+              class="item-card-img"
+              loading="lazy"
+            />
+            {% if item.images.size > 1 %}
+            <span class="img-count-badge">📷 {{ item.images.size }}</span>
+            {% endif %}
+          </div>
         {% else %}
           <div class="item-card-img-placeholder">
             <span>📷</span>

@@ -6,7 +6,8 @@ original_price: 229
 condition: "Good"
 description: "Classic IKEA POÄNG armchair with matching ottoman. Bent beech frame with comfortable cushioned seat and back. The cushions are in great condition with no stains or tears. A timeless design that fits any living room."
 images:
-  - "https://placehold.co/800x600/8B5CF6/FFFFFF?text=IKEA+POANG+Armchair"
+  - "https://placehold.co/800x600/8B5CF6/FFFFFF?text=IKEA+POANG+—+Armchair"
+  - "https://placehold.co/800x600/7C3AED/FFFFFF?text=IKEA+POANG+—+Ottoman"
 specs:
   Frame Material: "Bent Beech"
   Cushion Colour: "Almås Natural (beige)"

@@ -6,7 +6,9 @@ original_price: 1795
 condition: "Good"
 description: "The iconic Herman Miller Aeron ergonomic office chair. PostureFit SL lumbar support, adjustable armrests, and breathable 8Z Pellicle mesh that keeps you cool. Used as a home office chair for approximately 2 years. Fully adjustable and in excellent working order."
 images:
-  - "https://placehold.co/800x600/8B5CF6/FFFFFF?text=Herman+Miller+Aeron"
+  - "https://placehold.co/800x600/8B5CF6/FFFFFF?text=Herman+Miller+—+Full+Chair"
+  - "https://placehold.co/800x600/6D28D9/FFFFFF?text=Herman+Miller+—+Lumbar+%26+Back"
+  - "https://placehold.co/800x600/4C1D95/FFFFFF?text=Herman+Miller+—+Armrest+Detail"
 specs:
   Size: "Size B (fits 5'2\"–5'11\", up to 300 lbs)"
   Colour: "Graphite / Carbon"

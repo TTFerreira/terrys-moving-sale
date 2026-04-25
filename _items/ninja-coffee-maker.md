@@ -6,7 +6,8 @@ original_price: 179
 condition: "Excellent"
 description: "Versatile Ninja Dual Brew coffee maker that brews a full carafe or a single serve cup. Comes with a reusable coffee grounds filter and a pod basket for K-Cup pods. Barely used — we switched to a bean-to-cup machine."
 images:
-  - "https://placehold.co/800x600/10B981/FFFFFF?text=Ninja+Dual+Brew"
+  - "https://placehold.co/800x600/10B981/FFFFFF?text=Ninja+Coffee+—+Front+View"
+  - "https://placehold.co/800x600/047857/FFFFFF?text=Ninja+Coffee+—+Accessories"
 specs:
   Type: "Dual Brew (carafe + single serve)"
   Capacity: "12-cup carafe"
