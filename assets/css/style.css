@@ -10,32 +10,32 @@
 }
 
 :root {
-  --color-primary:    #1B3A5C;
-  --color-accent:     #F97316;
-  --color-accent-dk:  #EA6800;
-  --color-bg:         #F1F5F9;
+  --color-primary:    #5B21B6;
+  --color-accent:     #EC4899;
+  --color-accent-dk:  #DB2777;
+  --color-bg:         #FAF7FF;
   --color-surface:    #FFFFFF;
-  --color-border:     #E2E8F0;
-  --color-text:       #1E293B;
-  --color-text-muted: #64748B;
-  --color-price:      #16A34A;
+  --color-border:     #EDE9FE;
+  --color-text:       #1E1B4B;
+  --color-text-muted: #7E7799;
+  --color-price:      #059669;
 
   /* category colours */
-  --cat-electronics:  #3B82F6;
-  --cat-furniture:    #8B5CF6;
+  --cat-electronics:  #0EA5E9;
+  --cat-furniture:    #F59E0B;
   --cat-kitchen:      #10B981;
-  --cat-outdoor:      #F59E0B;
-  --cat-sports:       #EF4444;
-  --cat-books:        #EC4899;
-  --cat-other:        #6B7280;
+  --cat-outdoor:      #22C55E;
+  --cat-sports:       #F97316;
+  --cat-books:        #A855F7;
+  --cat-other:        #94A3B8;
 
-  --radius:    0.5rem;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
-  --shadow-lg: 0 10px 15px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.05);
-  --shadow-xl: 0 20px 25px rgba(0,0,0,.10), 0 8px 10px rgba(0,0,0,.06);
+  --radius:    0.6rem;
+  --shadow-sm: 0 1px 3px rgba(91,33,182,.07), 0 1px 2px rgba(91,33,182,.05);
+  --shadow-md: 0 4px 6px rgba(91,33,182,.08), 0 2px 4px rgba(91,33,182,.05);
+  --shadow-lg: 0 10px 15px rgba(91,33,182,.09), 0 4px 6px rgba(91,33,182,.05);
+  --shadow-xl: 0 20px 25px rgba(91,33,182,.12), 0 8px 10px rgba(91,33,182,.06);
 
-  --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -64,7 +64,7 @@ img { display: block; max-width: 100%; }
    Header
    ============================================================ */
 .site-header {
-  background: linear-gradient(135deg, #0f2749 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, #1E1B4B 0%, #3B0764 100%);
   color: #fff;
   padding: 1rem 0;
   position: sticky;
@@ -150,7 +150,7 @@ img { display: block; max-width: 100%; }
 }
 
 .hero {
-  background: linear-gradient(135deg, #0a1f3d 0%, #1B3A5C 40%, #1e4d8c 70%, #c85000 100%);
+  background: linear-gradient(135deg, #1E1B4B 0%, #4C1D95 30%, #7C3AED 65%, #EC4899 100%);
   background-size: 300% 300%;
   animation: heroShift 12s ease infinite;
   color: #fff;
@@ -166,8 +166,8 @@ img { display: block; max-width: 100%; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 20% 50%, rgba(249,115,22,0.15) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  background-image: radial-gradient(circle at 20% 50%, rgba(236,72,153,0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.07) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -252,7 +252,7 @@ img { display: block; max-width: 100%; }
 .filter-btn:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
-  background: #fff7ed;
+  background: #fdf2f8;
 }
 
 .filter-btn.active {
@@ -337,8 +337,8 @@ img { display: block; max-width: 100%; }
 
 .item-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0,0,0,.12), 0 6px 12px rgba(249,115,22,.1);
-  border-color: rgba(249,115,22,0.45);
+  box-shadow: 0 16px 32px rgba(91,33,182,.14), 0 6px 12px rgba(236,72,153,.12);
+  border-color: rgba(236,72,153,0.45);
   text-decoration: none;
 }
 
@@ -382,7 +382,7 @@ img { display: block; max-width: 100%; }
 .item-card-img-placeholder {
   width: 100%;
   aspect-ratio: 4/3;
-  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -477,20 +477,20 @@ img { display: block; max-width: 100%; }
 }
 
 /* Category-specific colours */
-.category-electronics                { background: #EFF6FF; color: var(--cat-electronics); border: 1px solid #BFDBFE; }
-.category-furniture                  { background: #F5F3FF; color: var(--cat-furniture);   border: 1px solid #DDD6FE; }
+.category-electronics                { background: #E0F2FE; color: var(--cat-electronics); border: 1px solid #BAE6FD; }
+.category-furniture                  { background: #FFFBEB; color: var(--cat-furniture);   border: 1px solid #FDE68A; }
 .category-kitchen,
 .category-kitchen-appliances,
 .category-kitchen-&-appliances       { background: #ECFDF5; color: var(--cat-kitchen);     border: 1px solid #A7F3D0; }
 .category-outdoor,
 .category-outdoor-garden,
-.category-outdoor-&-garden           { background: #FFFBEB; color: var(--cat-outdoor);     border: 1px solid #FDE68A; }
+.category-outdoor-&-garden           { background: #F0FDF4; color: var(--cat-outdoor);     border: 1px solid #BBF7D0; }
 .category-sports,
 .category-sports-recreation,
-.category-sports-&-recreation        { background: #FEF2F2; color: var(--cat-sports);      border: 1px solid #FECACA; }
+.category-sports-&-recreation        { background: #FFF7ED; color: var(--cat-sports);      border: 1px solid #FED7AA; }
 .category-books,
 .category-books-media,
-.category-books-&-media              { background: #FDF2F8; color: var(--cat-books);       border: 1px solid #FBCFE8; }
+.category-books-&-media              { background: #FAF5FF; color: var(--cat-books);       border: 1px solid #E9D5FF; }
 
 /* Condition badges */
 .condition-badge { margin-left: 0.35rem; }
@@ -672,9 +672,9 @@ img { display: block; max-width: 100%; }
 /* Savings badge */
 .price-save {
   display: inline-block;
-  background: #FEF3C7;
-  color: #92400E;
-  border: 1px solid #FDE68A;
+  background: #FDF2F8;
+  color: #9D174D;
+  border: 1px solid #FBCFE8;
   border-radius: 0.3rem;
   font-size: 0.78rem;
   font-weight: 700;
@@ -804,7 +804,7 @@ img { display: block; max-width: 100%; }
    Footer
    ============================================================ */
 .site-footer {
-  background: linear-gradient(135deg, #0f2749 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, #1E1B4B 0%, #3B0764 100%);
   color: rgba(255,255,255,0.75);
   padding: 1.5rem 0;
   margin-top: auto;
